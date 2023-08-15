@@ -1,0 +1,72 @@
+.settings-heading {
+    font-size: 32px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.applications-heading {
+    margin-top: 30px;
+}
+
+.job-list-container {
+    max-width: 100%;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+
+.job-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    font-size: 16px;
+}
+
+.job-table tr {
+    margin-bottom: 30px;
+}
+
+.job-table th,
+.job-table td {
+    background-color: #f5f5f5;
+    padding: 12px;
+    text-align: left;
+}
+
+.item-title {
+    font-weight: 600;
+    color: #373737;
+}
+
+.job-table th {
+    background-color: #f1f4f9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.job-table td {
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.job-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.label {
+    color: #3c9df2;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    margin-bottom: 20px;
+}

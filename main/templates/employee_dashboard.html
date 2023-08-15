@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Employee Dashboard{% endblock %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'css/employee_dashboard.css'%}">{% endblock %}
+
+{% block content %}
+    <h2 class="settings-heading">Settings</h2>
+    <table>
+        <tr>
+            <th>Name:</th>
+            <th>{{ user.first_name}} {{ user.last_name }}</th>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <th>{{ user.email }}</th>
+        </tr>
+    </table>
+    <h2 class="responses"> My responses </h2>
+    {% for response in responses %}
+        <p>Job-Title: {{ response.application.job_name }}</p>
+
+        <p>CV: <a href="{{ response.file.url }}">{{response.file.name }}</a></p>
+        <a href="#" class="expand-button" data-target="response-{{ response.id }}">Show More</a>
+        <div class="expanded-content response-{{response.id}}">
+            <p>Message</p>
+            <div class="message-area">
+                <p>{{response.message}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        const expandButton = document.querySelectorAll(".expand-button");
+
+        expandButton.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetSelector = button.dataset.target;
+                const expandContent = document.querySelector(`.${targetSelector}`);
+
+                if(expandContent) {
+                    if (expandContent.style.display === 'none') {
+                        expandContent.style.display = "block";
+                    } else {
+                        expandContent.style.display = "none";
+                    }
+                }
+            });
+        })
+    </script>
+{% endblock %}

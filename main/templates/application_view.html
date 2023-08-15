@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Application{% endblock %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/application_view.css'%}">
+{% endblock %}
+
+{% block content %}
+    <h2 class="job-title">{{ application.job_name }}</h2>
+    <p>Salary: <p class="salary">From {{ application.base_salary }} to {{ application.floor_salary }} {{application.currency}}</p></p>
+    <div class="experience-section">
+        <p>Required experience: <p class="experience">{{ application.get_experience_display }}</p></p>
+    </div>
+    <div class="location-section">
+        <p>Location: <p class="location">{{ application.location }}</p></p>
+    </div>
+    <div class="description-section"> 
+        <p class="description">Description of Position</p>
+        <div class="text-area">
+            {{ application.job_description }}
+        </div>
+        <div class="contact-section">
+            <p class="contact">Contact Information</p>
+            <p>Phone number: <b>{{ application.phone_number }}</b></p>
+            <p>Email: <b>{{ application.email }}</b></p>
+        </div>
+    </div>
+    {% if user.is_employee %}
+        <a href='upload_cv' class="btn btn-primary">Apply</a>
+    {% endif %}
+{% endblock %}

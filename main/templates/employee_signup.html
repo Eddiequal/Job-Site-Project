@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Employee SignUp{% endblock %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/employee_signup.css'%}">
+{% endblock %}
+
+{% block content %}
+    <h1 class="employee-heading"> Employee Registration </h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary" value="SignUp">Sign Up</button>
+    </form>
+    <div class="login-form">
+        <a href="/employer_signup">Looking for employees?</a>
+    </div>
+{% endblock %}

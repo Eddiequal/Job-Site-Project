@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Jobs{% endblock %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/jobs.css'%}">
+{% endblock %}
+
+{% block content %}
+    <h2 class="last-jobs">Last Job Offers</h2>
+    <div class="job-list-container">
+        <table class="job-table">
+            <tbody>
+                {% for job in applications %}
+                    <tr>
+                        <td><p class="item-title">Company Name</p><a href="{% url 'application_view' job.id %}">{{ job.company_name }}</a></td>
+                        <td><p class="item-title">Job Name</p>{{ job.job_name }}</td>
+                        <td><p class="item-title">Salary</p>{{ job.base_salary }} - {{ job.floor_salary }} {{ job.currency }}</td>
+                        <td><p class="item-title">Experience</p>{{ job.get_experience_display }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if applications.has_previous %}
+                <a href="?page=1" class="btn btn-secondary">&laquo; first</a>
+                <a href="?page={{ applications.previous_page_number }}" class="btn btn-secondary">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ applications.number }} of {{ applications.paginator.num_pages }}.
+            </span>
+    
+            {% if applications.has_next %}
+                <a href="?page={{ applications.next_page_number }}" class="btn btn-secondary">next</a>
+                <a href="?page={{ applications.paginator.num_pages }}" class="btn btn-secondary">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
